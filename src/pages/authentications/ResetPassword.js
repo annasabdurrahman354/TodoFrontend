@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams} from 'react-router-dom'
 import { Label, Input, Button } from '@windmill/react-ui'
-import ImageLight from '../assets/img/forgot-password-office.jpeg'
-import ImageDark from '../assets/img/forgot-password-office-dark.jpeg'
-import { forgotPassword } from '../services/auth'
+import ImageLight from '../../assets/img/forgot-password-office.jpeg'
+import ImageDark from '../../assets/img/forgot-password-office-dark.jpeg'
+import { resetPassword } from '../../services/auth'
 
-function ForgotPassword() {
-  const [email, setEmail] = useState("")
+function ResetPassword() {
+  const {email, token} = useParams();
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState([])
 
   let history = useHistory();
 
-  const handleForgotPassword = () => {
-    if(email === ""){
-      setMessage("Please enter your email first!")
+  const handleResetPassword = () => {
+    if(newPassword !== confirmPassword){
+      setMessage("Password confirmation doesn't match")
     }
     else{
       setMessage([])
-      forgotPassword(email, setLoading, setMessage, history)
+      resetPassword(email, token.toString().replaceAll("%2F", "/"), newPassword, confirmPassword, setLoading, setMessage, history)
     }
-  };
+  }
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
@@ -43,12 +45,22 @@ function ForgotPassword() {
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
               <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Forgot password
+                Create your new password
               </h1>
 
               <Label>
                 <span>Email</span>
-                <Input value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1" placeholder="Enter your email" />
+                <Input disabled value={email} className="mt-1" placeholder={email} type="text" />
+              </Label>
+
+              <Label className="mt-4">
+                <span>New Password</span>
+                <Input value={newPassword} onChange={(e) => setNewPassword(e.target.value)} className="mt-1" placeholder="***************" type="password" />
+              </Label>
+
+              <Label className="mt-4">
+                <span>Confirm password</span>
+                <Input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="mt-1" placeholder="***************" type="password" />
               </Label>
 
               <p className='text-red-500 font-normal my-2'>
@@ -59,8 +71,12 @@ function ForgotPassword() {
                 {loading.toString()}
               </p>
 
-              <Button onClick={handleForgotPassword}   block className="mt-4">
-                Recover password
+              <p className='text-red-500 font-normal my-2'>
+                {token.toString().replaceAll("%2F", "/")}
+              </p>
+
+              <Button onClick={handleResetPassword}   block className="mt-4">
+                Change password
               </Button>
 
               <hr className="mt-4 mb-6" />
@@ -81,4 +97,4 @@ function ForgotPassword() {
   )
 }
 
-export default ForgotPassword
+export default ResetPassword

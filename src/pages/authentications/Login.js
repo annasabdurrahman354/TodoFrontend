@@ -1,27 +1,31 @@
 import React, { useState } from 'react'
+import { Link, useHistory} from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 import { Label, Input, Button } from '@windmill/react-ui'
-import { Link, useHistory, useParams } from 'react-router-dom'
-import ImageLight from '../assets/img/forgot-password-office.jpeg'
-import ImageDark from '../assets/img/forgot-password-office-dark.jpeg'
-import { sendEmailConfirmation } from '../services/auth'
+import { login } from '../../services/auth'
+import ImageLight from '../../assets/img/login-office.jpeg'
+import ImageDark from '../../assets/img/login-office-dark.jpeg'
+import AuthState from '../../states/authState'
 
-
-function SendEmailConfirmation() {
-  const {username} = useParams();
+function Login() {
+  const [authState, setAuthState] = useRecoilState(AuthState)
+  
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState([])
 
   let history = useHistory();
 
-  const handleSendEmailConfirmation = () => {
-    if(username === ""){
-      setMessage("Please enter your email first!")
+  const handleLogin = () => {
+    if(username === "" || password === ""){
+      setMessage("Fill all field first")
     }
     else{
       setMessage([])
-      sendEmailConfirmation(username, setLoading, setMessage, history)
+      login(username, password, setAuthState, setLoading, setMessage, history)
     }
-  }
+  };
 
   return (
     <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
@@ -43,13 +47,15 @@ function SendEmailConfirmation() {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Send Email Confirmation
-              </h1>
-
+              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Welcome Back</h1>
               <Label>
                 <span>Username</span>
-                <Input disabled value={username} className="mt-1" type="text" placeholder={username} />
+                <Input value={username} onChange={(e) => setUsername(e.target.value)} className="mt-1" type="text" placeholder="Enter your accounts username" />
+              </Label>
+
+              <Label className="mt-4">
+                <span>Password</span>
+                <Input value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1" type="password" placeholder="***************" />
               </Label>
 
               <p className='text-red-500 font-normal my-2'>
@@ -60,8 +66,8 @@ function SendEmailConfirmation() {
                 {loading.toString()}
               </p>
 
-              <Button onClick={handleSendEmailConfirmation} block className="mt-4">
-                Send Email Confirmation
+              <Button onClick={handleLogin} className="mt-4">
+                Log in
               </Button>
 
               <hr className="mt-4 mb-6" />
@@ -69,9 +75,17 @@ function SendEmailConfirmation() {
               <p>
                 <Link
                   className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  to="/login"
+                  to="/forgot-password"
                 >
-                  Back to login page
+                  Forgot your password?
+                </Link>
+              </p>
+              <p className="mt-1">
+                <Link
+                  className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                  to="/register"
+                >
+                  Create account
                 </Link>
               </p>
             </div>
@@ -82,4 +96,4 @@ function SendEmailConfirmation() {
   )
 }
 
-export default SendEmailConfirmation
+export default Login

@@ -38,7 +38,6 @@ export function login(username, password, setAuthState, setLoading, setMessage, 
         "password": password
         }).then(response => {
             localStorage.setItem("user", JSON.stringify(response.data))
-              
             Toast.fire({
                 icon: 'success',
                 title: 'Welcome back @' + response.data.username

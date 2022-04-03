@@ -7,11 +7,11 @@ import AuthState from './states/authState';
 import UserState from './states/userState';
 
 const Layout = lazy(() => import('./containers/Layout'))
-const Login = lazy(() => import('./pages/Login'))
-const Register = lazy(() => import('./pages/Register'))
-const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
-const SendEmailConfirmation = lazy(() => import('./pages/SendEmailConfirmation'))
-const ResetPassword = lazy(() => import('./pages/ResetPassword'))
+const Login = lazy(() => import('./pages/authentications/Login'))
+const Register = lazy(() => import('./pages/authentications/Register'))
+const ForgotPassword = lazy(() => import('./pages/authentications/ForgotPassword'))
+const SendEmailConfirmation = lazy(() => import('./pages/authentications/SendEmailConfirmation'))
+const ResetPassword = lazy(() => import('./pages/authentications/ResetPassword'))
 
 function App() {
 

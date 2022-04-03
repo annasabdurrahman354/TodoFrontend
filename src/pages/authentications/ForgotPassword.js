@@ -1,29 +1,24 @@
 import React, { useState } from 'react'
-import { Link, useHistory} from 'react-router-dom'
-import { useRecoilState } from 'recoil'
+import { Link, useHistory } from 'react-router-dom'
 import { Label, Input, Button } from '@windmill/react-ui'
-import { login } from '../services/auth'
-import ImageLight from '../assets/img/login-office.jpeg'
-import ImageDark from '../assets/img/login-office-dark.jpeg'
-import AuthState from '../states/authState'
+import ImageLight from '../../assets/img/forgot-password-office.jpeg'
+import ImageDark from '../../assets/img/forgot-password-office-dark.jpeg'
+import { forgotPassword } from '../../services/auth'
 
-function Login() {
-  const [authState, setAuthState] = useRecoilState(AuthState)
-  
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+function ForgotPassword() {
+  const [email, setEmail] = useState("")
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState([])
 
   let history = useHistory();
 
-  const handleLogin = () => {
-    if(username === "" || password === ""){
-      setMessage("Fill all field first")
+  const handleForgotPassword = () => {
+    if(email === ""){
+      setMessage("Please enter your email first!")
     }
     else{
       setMessage([])
-      login(username, password, setAuthState, setLoading, setMessage, history)
+      forgotPassword(email, setLoading, setMessage, history)
     }
   };
 
@@ -47,15 +42,13 @@ function Login() {
           </div>
           <main className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
             <div className="w-full">
-              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">Welcome Back</h1>
-              <Label>
-                <span>Username</span>
-                <Input value={username} onChange={(e) => setUsername(e.target.value)} className="mt-1" type="text" placeholder="Enter your accounts username" />
-              </Label>
+              <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                Forgot password
+              </h1>
 
-              <Label className="mt-4">
-                <span>Password</span>
-                <Input value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1" type="password" placeholder="***************" />
+              <Label>
+                <span>Email</span>
+                <Input value={email} onChange={(e) => setEmail(e.target.value)} className="mt-1" placeholder="Enter your email" />
               </Label>
 
               <p className='text-red-500 font-normal my-2'>
@@ -66,8 +59,8 @@ function Login() {
                 {loading.toString()}
               </p>
 
-              <Button onClick={handleLogin} className="mt-4">
-                Log in
+              <Button onClick={handleForgotPassword}   block className="mt-4">
+                Recover password
               </Button>
 
               <hr className="mt-4 mb-6" />
@@ -75,17 +68,9 @@ function Login() {
               <p>
                 <Link
                   className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  to="/forgot-password"
+                  to="/login"
                 >
-                  Forgot your password?
-                </Link>
-              </p>
-              <p className="mt-1">
-                <Link
-                  className="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                  to="/register"
-                >
-                  Create account
+                  Back to login page
                 </Link>
               </p>
             </div>
@@ -96,4 +81,4 @@ function Login() {
   )
 }
 
-export default Login
+export default ForgotPassword

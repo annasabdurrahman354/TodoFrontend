@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import { Input, Label, Button } from '@windmill/react-ui'
-import { register } from '../services/auth';
-import ImageLight from '../assets/img/create-account-office.jpeg'
-import ImageDark from '../assets/img/create-account-office-dark.jpeg'
+import { register } from '../../services/auth';
+import ImageLight from '../../assets/img/create-account-office.jpeg'
+import ImageDark from '../../assets/img/create-account-office-dark.jpeg'
 
 function Register() {
   const [username, setUsername] = useState("");

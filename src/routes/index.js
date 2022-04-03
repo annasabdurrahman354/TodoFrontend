@@ -1,10 +1,15 @@
 import { lazy } from 'react'
 
 // use lazy for better code splitting, a.k.a. load faster
-const Forms = lazy(() => import('../pages/Forms'))
-const Tables = lazy(() => import('../pages/Tables'))
-const Page404 = lazy(() => import('../pages/404'))
-const Blank = lazy(() => import('../pages/Blank'))
+const Buttons = lazy(() => import('../pages/dashboards/Buttons'))
+const Cards = lazy(() => import('../pages/dashboards/Cards'))
+const Charts = lazy(() => import('../pages/dashboards/Charts'))
+const Dashboard = lazy(() => import('../pages/dashboards/Dashboard'))
+const Modals = lazy(() => import('../pages/dashboards/Modals'))
+const Forms = lazy(() => import('../pages/dashboards/Forms'))
+const Tables = lazy(() => import('../pages/dashboards/Tables'))
+const Page404 = lazy(() => import('../pages/dashboards/404'))
+const Blank = lazy(() => import('../pages/dashboards/Blank'))
 
 /**
  * ⚠ These are internal routes!
@@ -19,7 +24,19 @@ const Blank = lazy(() => import('../pages/Blank'))
 const routes = [
   {
     path: '/dashboard', // the url
-    component: Blank, // view rendered
+    component: Dashboard, // view rendered
+  },
+  {
+    path: '/buttons',
+    component: Buttons,
+  },
+  {
+    path: '/cards',
+    component: Cards,
+  },
+  {
+    path: '/charts',
+    component: Charts,
   },
   {
     path: '/forms',
@@ -28,6 +45,10 @@ const routes = [
   {
     path: '/tables',
     component: Tables,
+  },
+  {
+    path: '/modals',
+    component: Modals,
   },
   {
     path: '/404',

@@ -9,7 +9,7 @@ import ThemedSuspense from '../components/ThemedSuspense'
 import { SidebarContext } from '../context/SidebarContext'
 import UserState from '../states/userState'
 
-const Page404 = lazy(() => import('../pages/404'))
+const Page404 = lazy(() => import('../pages/dashboards/404'))
 
 function Layout() {
   const [userState, setUserState] = useRecoilState(UserState)
