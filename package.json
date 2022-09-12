@@ -19,6 +19,7 @@
     "@testing-library/jest-dom": "4.2.4",
     "@testing-library/react": "9.5.0",
     "@testing-library/user-event": "7.2.1",
+    "@tinymce/tinymce-react": "^3.13.1",
     "@windmill/react-ui": "0.3.1",
     "axios": "^0.26.1",
     "chart.js": "2.9.3",
@@ -33,7 +34,8 @@
     "react-transition-group": "4.4.1",
     "recoil": "^0.6.1",
     "sweetalert2": "^11.4.4",
-    "sweetalert2-react-content": "^4.2.0"
+    "sweetalert2-react-content": "^4.2.0",
+    "tinymce": "^5.10.3"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "1.1.4",

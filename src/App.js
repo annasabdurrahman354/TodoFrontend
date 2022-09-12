@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { isLoggedIn } from './services/auth'
 import AuthState from './states/authState';
 import UserState from './states/userState';
+import Edit from './Edit'
 
 const Layout = lazy(() => import('./containers/Layout'))
 const Login = lazy(() => import('./pages/authentications/Login'))
@@ -25,9 +26,7 @@ function App() {
         <Router>
           <AccessibleNavigationAnnouncer />
           <Switch>
-            {/* Place new routes over this */}
             <Route path="/app" component={Layout} />
-            {/* If you have an index page, you can remothis Redirect */}
             <Redirect exact from="/*" to="/app" />
           </Switch>
         </Router>
@@ -38,6 +37,8 @@ function App() {
         <Router>
           <AccessibleNavigationAnnouncer />
           <Switch>
+            <Route path="/home" component={Edit}/>
+            <Route path="/a/edit" component={Edit} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/forgot-password" component={ForgotPassword} />

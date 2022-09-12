@@ -13,6 +13,16 @@ const routes = [
     name: 'Dashboard', // name that appear in Sidebar
   },
   {
+    path: '/app/profile', // the url
+    icon: 'PersonIcon', // the component being exported from icons/index.js
+    name: 'Profile', // name that appear in Sidebar
+  },
+  {
+    path: '/app/post', // the url
+    icon: 'BookIcon', // the component being exported from icons/index.js
+    name: 'Posts', // name that appear in Sidebar
+  },
+  {
     path: '/app/buttons',
     icon: 'ButtonsIcon',
     name: 'Buttons',

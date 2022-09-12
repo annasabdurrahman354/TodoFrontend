@@ -1,4 +1,5 @@
 import { ReactComponent as ButtonsIcon } from './buttons.svg'
+import { ReactComponent as BookIcon } from './book.svg'
 import { ReactComponent as CardsIcon } from './cards.svg'
 import { ReactComponent as ChartsIcon } from './charts.svg'
 import { ReactComponent as FormsIcon } from './forms.svg'
@@ -17,6 +18,7 @@ import { ReactComponent as CartIcon } from './cart.svg'
 import { ReactComponent as ChatIcon } from './chat.svg'
 import { ReactComponent as MoneyIcon } from './money.svg'
 import { ReactComponent as PeopleIcon } from './people.svg'
+import { ReactComponent as PersonIcon } from './person.svg'
 import { ReactComponent as SearchIcon } from './search.svg'
 import { ReactComponent as MoonIcon } from './moon.svg'
 import { ReactComponent as SunIcon } from './sun.svg'
@@ -29,6 +31,7 @@ import { ReactComponent as OutlineLogoutIcon } from './outlineLogout.svg'
 
 export {
   ButtonsIcon,
+  BookIcon,
   CardsIcon,
   ChartsIcon,
   FormsIcon,
@@ -47,6 +50,7 @@ export {
   ChatIcon,
   MoneyIcon,
   PeopleIcon,
+  PersonIcon,
   SearchIcon,
   MoonIcon,
   SunIcon,

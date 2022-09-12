@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const API_URL = "http://localhost:3120/api/"
+const API_URL = "http://localhost:3120/"
 
 const Toast = Swal.mixin({
     toast: true,
@@ -33,7 +33,7 @@ export function isLoggedIn(setAuthState){
 
 export function login(username, password, setAuthState, setLoading, setMessage, history) {
     setLoading(true)
-    axios.post(API_URL + 'Authenticate/login', {
+    axios.post(API_URL + 'api/account/login', {
         "username": username,
         "password": password
         }).then(response => {
@@ -74,7 +74,7 @@ export function login(username, password, setAuthState, setLoading, setMessage, 
 
 export function register(username, email, firstname, lastname, password, setLoading, setMessage, history) {
     setLoading(true)
-    axios.post(API_URL + 'Authenticate/register', {
+    axios.post(API_URL + 'api/account/register', {
         "username": username,
         "email": email,
         "firstname": firstname,
@@ -110,7 +110,7 @@ export function register(username, email, firstname, lastname, password, setLoad
 
 export function forgotPassword(email, setLoading, setMessage, history) {
     setLoading(true)
-    axios.get(API_URL + 'Authenticate/forgot-password', {params: {email: email}})
+    axios.get(API_URL + 'api/account/forgot-password', {params: {email: email}})
         .then(response => {
             setLoading(false)
             console.log(JSON.stringify(response.data))
@@ -142,7 +142,7 @@ export function forgotPassword(email, setLoading, setMessage, history) {
 
 export function resetPassword(email, token, newPassword, confirmPassword, setLoading, setMessage, history) {
     setLoading(true)
-    axios.post(API_URL + 'Authenticate/reset-password', 
+    axios.post(API_URL + 'api/account/reset-password', 
         {
             newPassword : newPassword, 
             confirmPassword : confirmPassword
@@ -181,7 +181,7 @@ export function resetPassword(email, token, newPassword, confirmPassword, setLoa
 
 export function sendEmailConfirmation(username, setLoading, setMessage, history) {
     setLoading(true)
-    axios.get(API_URL + 'Authenticate/send-verification-email', {params: {username: username}})
+    axios.get(API_URL + 'api/account/send-verification-email', {params: {username: username}})
         .then(response => {
             setLoading(false)
             console.log(JSON.stringify(response.data))
